@@ -1,11 +1,9 @@
 package jm.task.core.jdbc.dao;
 
-import com.google.protobuf.Message;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
 import java.sql.*;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,23 +74,19 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() throws SQLException {
         try (Connection conn =  Util.getConnection()) {
-            conn.setAutoCommit(false);
             List<User> list = new ArrayList<>();
-            try(Statement createTable = conn.createStatement ();){
-                ResultSet rs = createTable.executeQuery ("select * from sys.user");
-                while(rs.next()) {
-                    String name = rs.getString(2);
-                    String lastName = rs.getString(3);
-                    byte age = rs.getByte(4);
-                    User user = new User(name, lastName, age);
-                    list.add(user);
-                }
-                conn.commit();
-            } catch(SQLException e){
-                conn.rollback();
+            Statement createTable = conn.createStatement ();
+            ResultSet rs = createTable.executeQuery ("select * from sys.user");
+            while(rs.next()) {
+                String name = rs.getString(2);
+                String lastName = rs.getString(3);
+                byte age = rs.getByte(4);
+                User user = new User(name, lastName, age);
+                list.add(user);
             }
+            return list;
         }
-        return null;
+
     }
 
 

@@ -6,8 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.sql.*;
-import java.util.Properties;
-import java.util.logging.Logger;
 
 public class Util {
     // реализуйте настройку соеденения с БД
