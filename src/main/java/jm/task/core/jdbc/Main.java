@@ -6,6 +6,7 @@ import jm.task.core.jdbc.service.UserServiceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -16,9 +17,10 @@ public class Main {
         
         for(int i = 0; i < 3; i++){
             service.saveUser("name", "ln", (byte)i);
-            System.out.println("User с именем name" + i +  "в базу данных" );
+            System.out.println("User с именем name " + i +  " сохранен в базу данных" );
         }
-        ArrayList<User> users = (ArrayList<User>) service.getAllUsers();
+        List<User> users = service.getAllUsers();
+
         users.forEach(el -> System.out.println(el));
         users.clear();
         //users.forEach(el -> service.removeUserById(el.getId()));

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDao userDao = new UserDaoJDBCImpl();
+    private UserDao userDao = new UserDaoHibernateImpl();
 
     public UserServiceImpl() {
     }
@@ -31,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeUserById(long id) throws SQLException {
+        userDao.removeUserById(id);
         userDao.removeUserById(id);
     }
 
