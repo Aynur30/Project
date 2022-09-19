@@ -59,7 +59,7 @@ public class Util {
                 e.printStackTrace();
             }
         }
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
     }
     
 }
